@@ -1,7 +1,7 @@
 import { useState } from "react"
 import useFadeIn from "../../hooks/EfeitosVisuais/useFadeIn"
 import Hero from "../../Componentes/Hero/Hero"
-import heroImg from "../../assets/Imagens/HeroPages/hero-faq.png"
+import heroImg from "../../assets/Imagens/ImagensHeros/hero FAQ.jpg"
 
 export default function Faq() {
   useFadeIn()

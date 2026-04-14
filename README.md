@@ -1,73 +1,111 @@
-# React + TypeScript + Vite
+# 🦷 CareSyncer – Sprint 3 (Front-end)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## 📌 Sobre o Projeto
 
-Currently, two official plugins are available:
+O **CareSyncer** é uma solução tecnológica desenvolvida para otimizar a comunicação e o gerenciamento de atendimentos entre pacientes e dentistas voluntários da organização **Turma do Bem**.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+O objetivo principal é digitalizar processos que atualmente são realizados de forma manual, tornando o atendimento mais ágil, organizado e acessível.
 
-## React Compiler
+---
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## 🚀 Tecnologias Utilizadas
 
-## Expanding the ESLint configuration
+Durante a Sprint 3, o projeto passou por uma modernização completa no front-end, utilizando:
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- ⚛️ React
+- ⚡ Vite
+- 🔷 TypeScript
+- 🎨 Tailwind CSS
+- 🔀 React Router DOM
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+---
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+## 🧠 O que foi desenvolvido na Sprint 3
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+### 🔄 Migração de tecnologia
+- Conversão de HTML, CSS e JavaScript para **React + TypeScript**
+- Estruturação em **SPA (Single Page Application)**
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### 🧱 Componentização
+- Criação de componentes reutilizáveis:
+  - Navbar
+  - Footer
+  - Hero (reutilizável)
+  - HeroHome (carrossel)
+  - Cards de integrantes
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+### 🌐 Sistema de Rotas
+- Implementação com **React Router**
+- Navegação entre páginas sem recarregamento
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+### 📄 Páginas desenvolvidas
+- 🏠 Home
+- 📘 Sobre
+- ❓ FAQ (com interação dinâmica)
+- 👨‍💻 Integrantes
+- 📞 Contato (com formulário funcional)
+
+---
+
+## ⚙️ Funcionalidades Implementadas
+
+### 📩 Formulário de Contato
+- Validação de campos com `useState`
+- Feedback de erro e sucesso
+- Armazenamento de nome com `localStorage`
+
+### ❓ FAQ Interativo
+- Sistema de accordion com `useState`
+
+### 🎨 Responsividade
+- Implementação completa utilizando **Tailwind CSS**
+- Layout adaptável para:
+  - Mobile 📱
+  - Tablet 💻
+  - Desktop 🖥️
+
+### ✨ Animações
+- Uso de hook customizado (`useFadeIn`)
+- Transições suaves de entrada
+
+---
+
+## 📈 Melhorias em relação à Sprint 2
+
+- Código mais organizado e modular
+- Eliminação de repetição (DRY)
+- Melhor performance com Vite
+- Uso de tipagem com TypeScript
+- Layout mais moderno e responsivo
+
+---
+
+## 🔮 Próximos Passos (Sprint 4)
+
+As seguintes funcionalidades foram planejadas e poderão ser implementadas nas próximas sprints:
+
+- 📝 Formulário de cadastro de pacientes
+- 🔐 Sistema de login para dentistas
+- 🔗 Integração com back-end (Java + banco de dados)
+- 📊 Dashboard administrativo
+- 📡 Consumo de API
+
+---
+
+## 👨‍💻 Integrantes
+
+- **Manuel Pedro de Gouveia Neto**  
+  Desenvolvedor Full Stack (Front-end, Back-end e Banco de Dados)  
+  RM: 567458  
+
+- **Lucas Shida Rodrigues da Costa**  
+  Engenharia de Documentação / ChatDeveloper  
+  RM: 568194  
+
+---
+
+## 📂 Link do Repositirio Git Hub
+
+https://github.com/Mpgouveia-n/CareSyncer-Solution.git
+
+

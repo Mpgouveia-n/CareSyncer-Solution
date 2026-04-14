@@ -1,6 +1,6 @@
 import useFadeIn from "../../hooks/EfeitosVisuais/useFadeIn"
 import Hero from "../../Componentes/Hero/Hero"
-import heroImg from "../../assets/images/hero-sobre.png"
+import heroImg from "../../assets/Imagens/ImagensHeros/parceira.jpg"
 
 export default function Sobre() {
   useFadeIn()
