@@ -8,8 +8,8 @@ export default function Home() {
     <div className="w-full bg-[#d8f0db] fade-in">
       <HeroHome />
 
-      <section id="sobre-projeto" className="mx-auto max-w-6xl px-4 py-12 sm:px-6 md:px-8 lg:px-12 xl:px-16">
-        <div className="rounded-2xl bg-white p-6 shadow-[0_8px_24px_rgba(0,0,0,0.08)] md:p-10">
+      <section id="sobre-projeto" className="mx-auto max-w-6xl px-4 py-8 sm:px-6 sm:py-10 md:px-8 md:py-12 lg:px-12 xl:px-16">
+        <div className="rounded-xl bg-white p-5 shadow-[0_8px_24px_rgba(0,0,0,0.08)] sm:p-6 md:rounded-2xl md:p-10">
           <h2 className="mb-5 text-center text-2xl font-bold text-[#FB8C00] sm:text-3xl md:mb-6 md:text-4xl">
             Quem é a Turma do Bem?
           </h2>
@@ -26,8 +26,8 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="funcionalidades" className="px-4 py-12 sm:px-6 md:px-8 lg:px-12 xl:px-16">
-        <div className="mx-auto max-w-6xl rounded-2xl bg-white p-6 shadow-[0_8px_24px_rgba(0,0,0,0.08)] md:p-10">
+      <section id="funcionalidades" className="px-4 py-8 sm:px-6 sm:py-10 md:px-8 md:py-12 lg:px-12 xl:px-16">
+        <div className="mx-auto max-w-6xl rounded-xl bg-white p-5 shadow-[0_8px_24px_rgba(0,0,0,0.08)] sm:p-6 md:rounded-2xl md:p-10">
           <h2 className="mb-5 text-center text-2xl font-bold text-[#2E7D32] sm:text-3xl md:mb-6 md:text-4xl">
             O Desafio
           </h2>
@@ -40,8 +40,8 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="cadastro" className="mx-auto max-w-6xl px-4 py-12 sm:px-6 md:px-8 lg:px-12 xl:px-16">
-        <div className="rounded-2xl bg-white p-6 shadow-[0_8px_24px_rgba(0,0,0,0.08)] md:p-10">
+      <section id="cadastro" className="mx-auto max-w-6xl px-4 py-8 sm:px-6 sm:py-10 md:px-8 md:py-12 lg:px-12 xl:px-16">
+        <div className="rounded-xl bg-white p-5 shadow-[0_8px_24px_rgba(0,0,0,0.08)] sm:p-6 md:rounded-2xl md:p-10">
           <h2 className="mb-5 text-center text-2xl font-bold text-[#FB8C00] sm:text-3xl md:mb-6 md:text-4xl">
             A Solução: CareSyncer
           </h2>

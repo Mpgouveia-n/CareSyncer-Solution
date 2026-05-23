@@ -49,18 +49,18 @@ export default function Procedimentos() {
         imagem={heroImg}
       />
 
-      <section className="mx-auto max-w-6xl px-4 py-14 sm:px-6 md:px-8 lg:px-12">
-        <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+      <section className="mx-auto max-w-6xl px-4 py-10 sm:px-6 sm:py-12 md:px-8 md:py-14 lg:px-12">
+        <div className="grid grid-cols-1 gap-5 md:grid-cols-2 md:gap-6">
           {procedimentos.map((procedimento) => (
             <article
               key={procedimento.id}
-              className="flex h-full flex-col rounded-2xl bg-white p-6 shadow-[0_8px_24px_rgba(0,0,0,0.08)] transition hover:-translate-y-1"
+              className="flex h-full flex-col rounded-xl bg-white p-5 shadow-[0_8px_24px_rgba(0,0,0,0.08)] transition hover:-translate-y-1 sm:p-6 md:rounded-2xl"
             >
               <span className="mb-4 w-fit rounded-full bg-[#FB8C00]/10 px-3 py-1 text-sm font-semibold text-[#FB8C00]">
                 {procedimento.destaque}
               </span>
 
-              <h2 className="mb-3 text-2xl font-bold text-[#2E7D32]">
+              <h2 className="mb-3 text-xl font-bold text-[#2E7D32] sm:text-2xl">
                 {procedimento.nome}
               </h2>
 
@@ -71,7 +71,7 @@ export default function Procedimentos() {
               <button
                 type="button"
                 onClick={() => navigate(`/procedimentos/${procedimento.id}`)}
-                className="w-fit rounded-full bg-[#FB8C00] px-6 py-3 font-semibold text-white transition hover:bg-[#E86E00]"
+                className="w-full rounded-full bg-[#FB8C00] px-6 py-3 font-semibold text-white transition hover:bg-[#E86E00] sm:w-fit"
               >
                 Ver detalhes
               </button>

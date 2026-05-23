@@ -17,42 +17,42 @@ export default function HeroHome() {
   }
 
   return (
-    <section className="relative min-h-[85vh] w-full overflow-hidden md:min-h-screen">
+    <section className="relative min-h-[72vh] w-full overflow-hidden sm:min-h-[78vh] md:min-h-[85vh] lg:min-h-screen">
       <img
         src={slides[slideIndex]}
         alt="Hero"
         className="absolute inset-0 h-full w-full object-cover brightness-[55%]"
       />
 
-      <div className="absolute left-6 top-1/2 max-w-xl -translate-y-1/2 text-white sm:left-10 md:left-[10%]">
-        <h1 className="mb-4 text-3xl font-bold leading-tight drop-shadow-lg sm:text-4xl md:text-5xl">
+      <div className="absolute left-1/2 top-1/2 w-[min(88vw,36rem)] -translate-x-1/2 -translate-y-1/2 text-center text-white sm:w-[min(82vw,40rem)] md:left-[10%] md:w-auto md:max-w-xl md:translate-x-0 md:text-left">
+        <h1 className="mb-4 text-3xl font-bold leading-tight drop-shadow-lg sm:text-4xl md:text-5xl lg:text-5xl">
           Turma do Bem & CareSyncer
         </h1>
 
-        <p className="mb-6 text-base drop-shadow-md sm:text-lg md:text-xl">
+        <p className="mb-6 text-base leading-7 drop-shadow-md sm:text-lg md:text-xl">
           Tecnologia conectando pacientes e dentistas voluntários
         </p>
 
-        <a href="#sobre-projeto" className="inline-block rounded-full bg-[#FB8C00] px-8 py-3 font-semibold text-white shadow-lg transition hover:bg-[#E86E00]">
+        <a href="#sobre-projeto" className="inline-block rounded-full bg-[#FB8C00] px-7 py-3 font-semibold text-white shadow-lg transition hover:bg-[#E86E00] sm:px-8">
           Saiba mais
         </a>
       </div>
 
       <button
         onClick={prevSlide}
-        className="absolute left-4 top-1/2 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-black/35 text-3xl text-white transition hover:bg-black/55 md:left-6"
+        className="absolute left-3 top-1/2 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-black/35 text-2xl text-white transition hover:bg-black/55 sm:h-11 sm:w-11 sm:text-3xl md:left-6"
       >
         ‹
       </button>
 
       <button
         onClick={nextSlide}
-        className="absolute right-4 top-1/2 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-black/35 text-3xl text-white transition hover:bg-black/55 md:right-6"
+        className="absolute right-3 top-1/2 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-black/35 text-2xl text-white transition hover:bg-black/55 sm:h-11 sm:w-11 sm:text-3xl md:right-6"
       >
         ›
       </button>
 
-      <div className="absolute bottom-8 left-1/2 flex -translate-x-1/2 gap-3">
+      <div className="absolute bottom-6 left-1/2 flex -translate-x-1/2 gap-3 sm:bottom-8">
         {slides.map((_, index) => (
           <button
             key={index}

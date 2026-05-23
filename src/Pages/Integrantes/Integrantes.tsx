@@ -29,15 +29,15 @@ export default function Integrantes() {
   ]
 
   return (
-    <div className="fade-in">
+    <div className="fade-in bg-[#d8f0db]">
       <Hero
         titulo="Nossa Equipe"
         descricao="Conheça os integrantes responsáveis pelo desenvolvimento do CareSyncer."
         imagem={heroImg}
       />
 
-      <div className="py-12 px-4 sm:px-6 md:px-8 lg:px-12 max-w-5xl mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+      <div className="mx-auto max-w-5xl px-4 py-8 sm:px-6 sm:py-10 md:px-8 md:py-12 lg:px-12">
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 md:gap-8">
           {integrantes.map((integrante, index) => (
             <IntegrantesCard
               key={index}

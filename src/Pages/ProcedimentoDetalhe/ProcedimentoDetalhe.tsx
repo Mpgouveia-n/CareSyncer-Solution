@@ -51,15 +51,15 @@ export default function ProcedimentoDetalhe() {
           imagem={heroImg}
         />
 
-        <section className="mx-auto max-w-4xl px-4 py-14 text-center">
-          <div className="rounded-2xl bg-white p-8 shadow-[0_8px_24px_rgba(0,0,0,0.08)]">
-            <p className="mb-6 text-lg text-gray-700">
+        <section className="mx-auto max-w-4xl px-4 py-10 text-center sm:px-6 sm:py-12 md:px-8 md:py-14">
+          <div className="rounded-xl bg-white p-5 shadow-[0_8px_24px_rgba(0,0,0,0.08)] sm:p-6 md:rounded-2xl md:p-8">
+            <p className="mb-6 text-base leading-7 text-gray-700 sm:text-lg">
               Verifique o endereço acessado ou volte para a lista de procedimentos.
             </p>
 
             <Link
               to="/procedimentos"
-              className="inline-block rounded-full bg-[#FB8C00] px-6 py-3 font-semibold text-white transition hover:bg-[#E86E00]"
+              className="inline-block w-full rounded-full bg-[#FB8C00] px-6 py-3 font-semibold text-white transition hover:bg-[#E86E00] sm:w-fit"
             >
               Ver procedimentos
             </Link>
@@ -77,9 +77,9 @@ export default function ProcedimentoDetalhe() {
         imagem={heroImg}
       />
 
-      <section className="mx-auto max-w-5xl px-4 py-14 sm:px-6 md:px-8">
-        <div className="rounded-2xl bg-white p-6 shadow-[0_8px_24px_rgba(0,0,0,0.08)] md:p-10">
-          <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
+      <section className="mx-auto max-w-5xl px-4 py-10 sm:px-6 sm:py-12 md:px-8 md:py-14">
+        <div className="rounded-xl bg-white p-5 shadow-[0_8px_24px_rgba(0,0,0,0.08)] sm:p-6 md:rounded-2xl md:p-10">
+          <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3 lg:gap-6">
             <article className="rounded-xl border border-gray-300 p-5">
               <h2 className="mb-3 text-xl font-bold text-[#FB8C00]">
                 Descrição
@@ -98,7 +98,7 @@ export default function ProcedimentoDetalhe() {
               </p>
             </article>
 
-            <article className="rounded-xl border border-gray-300 p-5">
+            <article className="rounded-xl border border-gray-300 p-5 md:col-span-2 lg:col-span-1">
               <h2 className="mb-3 text-xl font-bold text-[#FB8C00]">
                 CareSyncer
               </h2>
@@ -110,7 +110,7 @@ export default function ProcedimentoDetalhe() {
 
           <Link
             to="/procedimentos"
-            className="mt-8 inline-block rounded-full bg-[#FB8C00] px-6 py-3 font-semibold text-white transition hover:bg-[#E86E00]"
+            className="mt-8 inline-block w-full rounded-full bg-[#FB8C00] px-6 py-3 text-center font-semibold text-white transition hover:bg-[#E86E00] sm:w-fit"
           >
             Voltar para procedimentos
           </Link>

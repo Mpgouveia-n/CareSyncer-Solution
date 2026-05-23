@@ -36,18 +36,19 @@ export default function Faq() {
   }
 
   return (
-    <div className="fade-in">
+    <div className="fade-in bg-[#d8f0db] lg:bg-white">
       <Hero
         titulo="Perguntas Frequentes"
         descricao="Tire suas dúvidas sobre o CareSyncer e a proposta da solução."
         imagem={heroImg}
       />
 
-      <div className="py-20 px-8 max-w-4xl mx-auto">
+      <div className="mx-auto max-w-4xl px-4 py-10 sm:px-6 sm:py-12 md:px-8 md:py-16 lg:px-8 lg:py-20">
+        <div className="rounded-xl bg-white p-5 shadow-[0_8px_24px_rgba(0,0,0,0.08)] sm:p-6 md:rounded-2xl md:p-8 lg:rounded-none lg:bg-transparent lg:p-0 lg:shadow-none">
         {faqs.map((faq, index) => (
           <div key={index} className="mb-4 border-b pb-4">
             <button
-              className="w-full text-left text-xl font-semibold flex justify-between items-center"
+              className="flex w-full items-start justify-between gap-4 text-left text-base font-semibold leading-7 sm:text-lg md:text-xl"
               onClick={() => toggleFAQ(index)}
             >
               {faq.pergunta}
@@ -67,10 +68,11 @@ export default function Faq() {
                   : "max-h-0 opacity-0"
               }`}
             >
-              <p className="text-gray-600">{faq.resposta}</p>
+              <p className="text-sm leading-7 text-gray-600 sm:text-base">{faq.resposta}</p>
             </div>
           </div>
         ))}
+        </div>
       </div>
     </div>
   )

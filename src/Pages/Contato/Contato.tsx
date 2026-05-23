@@ -61,9 +61,9 @@ export default function Contato() {
         imagem={heroImg}
       />
 
-      <section className="bg-orange-500 py-16 px-4 flex justify-center">
-        <div className="bg-white p-8 rounded-2xl w-full max-w-2xl shadow-lg">
-          <h2 className="text-2xl font-bold text-center mb-4">
+      <section className="flex justify-center bg-orange-500 px-4 py-10 sm:px-6 sm:py-12 md:py-16">
+        <div className="w-full max-w-2xl rounded-xl bg-white p-5 shadow-lg sm:p-6 md:rounded-2xl md:p-8">
+          <h2 className="mb-4 text-center text-2xl font-bold sm:text-3xl">
             Envie uma mensagem
           </h2>
 
@@ -145,7 +145,7 @@ export default function Contato() {
 
             <button
               type="submit"
-              className="bg-green-700 text-white py-3 px-6 rounded-lg font-semibold hover:bg-green-800 transition"
+              className="rounded-lg bg-green-700 px-6 py-3 font-semibold text-white transition hover:bg-green-800 sm:w-fit"
             >
               Enviar
             </button>
@@ -159,13 +159,13 @@ export default function Contato() {
         </div>
       </section>
 
-      <section className="bg-white py-16 px-4 text-center">
-        <h2 className="text-3xl font-bold mb-10 text-green-700">
+      <section className="bg-white px-4 py-10 text-center sm:px-6 sm:py-12 md:py-16">
+        <h2 className="mb-8 text-2xl font-bold text-green-700 sm:text-3xl md:mb-10">
           Equipe do Projeto
         </h2>
 
-        <div className="flex flex-wrap justify-center gap-8">
-          <div className="bg-white shadow-lg rounded-2xl p-4 w-72 hover:-translate-y-2 transition">
+        <div className="flex flex-wrap justify-center gap-6 md:gap-8">
+          <div className="w-full max-w-xs rounded-2xl bg-white p-4 shadow-lg transition hover:-translate-y-2">
             <img
               src={img1}
               alt="Manuel Pedro de Gouveia Neto"
@@ -185,7 +185,7 @@ export default function Contato() {
             </a>
           </div>
 
-          <div className="bg-white shadow-lg rounded-2xl p-4 w-72 hover:-translate-y-2 transition">
+          <div className="w-full max-w-xs rounded-2xl bg-white p-4 shadow-lg transition hover:-translate-y-2">
             <img
               src={img2}
               alt="Lucas Shida Rodrigues da Costa"

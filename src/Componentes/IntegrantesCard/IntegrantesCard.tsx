@@ -16,29 +16,33 @@ export default function IntegrantesCard({
   github
 }: Props) {
   return (
-    <div className="bg-white shadow-lg rounded-xl p-6 text-center">
-
+    <div className="mx-auto w-full max-w-sm rounded-xl bg-white p-5 text-center shadow-lg sm:p-6">
       <img
         src={imagem}
         alt={nome}
-        className="w-32 h-32 mx-auto rounded-full object-cover mb-4"
+        className="mx-auto mb-4 h-28 w-28 rounded-full object-cover sm:h-32 sm:w-32"
       />
 
-      <h3 className="text-xl font-bold">{nome}</h3>
+      <h3 className="text-lg font-bold leading-7 text-gray-900 sm:text-xl">
+        {nome}
+      </h3>
 
-      <p className="text-gray-600 mb-2">{cargo}</p>
+      <p className="mb-2 text-sm leading-6 text-gray-600 sm:text-base">
+        {cargo}
+      </p>
 
-      <p className="text-sm text-gray-500 mb-4">{rm}</p>
+      <p className="mb-4 text-sm leading-6 text-gray-500">
+        {rm}
+      </p>
 
-      <div className="flex justify-center gap-4">
-        <a href={linkedin} target="_blank" className="text-blue-600 hover:underline">
+      <div className="flex flex-wrap justify-center gap-4">
+        <a href={linkedin} target="_blank" className="text-sm text-blue-600 hover:underline sm:text-base">
           LinkedIn
         </a>
-        <a href={github} target="_blank" className="text-gray-800 hover:underline">
+        <a href={github} target="_blank" className="text-sm text-gray-800 hover:underline sm:text-base">
           GitHub
         </a>
       </div>
-
     </div>
   )
 }

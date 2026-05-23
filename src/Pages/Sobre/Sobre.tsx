@@ -6,14 +6,15 @@ export default function Sobre() {
   useFadeIn()
 
   return (
-    <div className="fade-in">
+    <div className="fade-in bg-[#d8f0db] lg:bg-white">
       <Hero
         titulo="Sobre o Projeto"
         descricao="Conheça o CareSyncer e a Turma do Bem"
         imagem={heroImg}
       />
 
-      <div className="py-12 px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 max-w-6xl mx-auto">
+      <div className="mx-auto max-w-6xl px-4 py-8 sm:px-6 sm:py-10 md:px-8 md:py-12 lg:px-12 xl:px-16">
+        <div className="rounded-xl bg-white p-5 shadow-[0_8px_24px_rgba(0,0,0,0.08)] sm:p-6 md:rounded-2xl md:p-10 lg:rounded-none lg:bg-transparent lg:p-0 lg:shadow-none">
         <section className="mb-10 md:mb-12">
           <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-3 md:mb-4">
             Sobre a Turma do Bem
@@ -68,6 +69,7 @@ export default function Sobre() {
             sociais na área da saúde.
           </p>
         </section>
+        </div>
       </div>
     </div>
   )
