@@ -57,6 +57,12 @@ export default function NavUser() {
           </li>
 
           <li>
+            <NavLink to="/procedimentos" className={menuLinkClass}>
+              Procedimentos
+            </NavLink>
+          </li>
+
+          <li>
             <NavLink to="/contato" className={menuLinkClass}>
               Contato
             </NavLink>
@@ -76,6 +82,9 @@ export default function NavUser() {
               </Link>
               <Link to="/#voluntarios" className="block rounded-lg px-4 py-2 text-sm font-semibold text-[#333333] transition-colors hover:bg-[#FB8C00]/10 hover:text-[#FB8C00]">
                 Voluntários
+              </Link>
+              <Link to="/procedimentos" className="block rounded-lg px-4 py-2 text-sm font-semibold text-[#333333] transition-colors hover:bg-[#FB8C00]/10 hover:text-[#FB8C00]">
+                Procedimentos
               </Link>
             </div>
           </li>
