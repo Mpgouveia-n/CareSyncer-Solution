@@ -1,9 +1,9 @@
-import { useState, useEffect } from "react"
-import type { ChangeEvent, FormEvent } from "react"
+import { useEffect, useState } from "react"
+import { useForm } from "react-hook-form"
+import type { SubmitHandler } from "react-hook-form"
 import useFadeIn from "../../hooks/EfeitosVisuais/useFadeIn"
 import Hero from "../../Componentes/Hero/Hero"
 
-// imagens
 import heroImg from "../../assets/Imagens/ImagensHeros/parceira.jpg"
 import img1 from "../../assets/Imagens/IntegrantesCareSyncer/Manuel pedro. contato.jpg"
 import img2 from "../../assets/Imagens/IntegrantesCareSyncer/Lucas shida.contato.jpg"
@@ -15,24 +15,23 @@ type FormData = {
   mensagem: string
 }
 
-type FormErrors = {
-  nome?: string
-  email?: string
-  assunto?: string
-  mensagem?: string
-}
-
 export default function Contato() {
   useFadeIn()
 
-  const [form, setForm] = useState<FormData>({
-    nome: "",
-    email: "",
-    assunto: "",
-    mensagem: ""
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors }
+  } = useForm<FormData>({
+    defaultValues: {
+      nome: "",
+      email: "",
+      assunto: "",
+      mensagem: ""
+    }
   })
 
-  const [erro, setErro] = useState<FormErrors>({})
   const [sucesso, setSucesso] = useState("")
   const [nomeSalvo, setNomeSalvo] = useState("")
 
@@ -41,63 +40,17 @@ export default function Contato() {
     if (nome) setNomeSalvo(nome)
   }, [])
 
-  function handleChange(
-    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) {
-    const { name, value } = e.target
+  const onSubmit: SubmitHandler<FormData> = (data) => {
+    const nome = data.nome.trim()
 
-    setForm((prev) => ({
-      ...prev,
-      [name]: value
-    }))
-  }
+    localStorage.setItem("nomeUsuario", nome)
+    setNomeSalvo(nome)
+    setSucesso(`Mensagem enviada com sucesso! Obrigado, ${nome}!`)
+    reset()
 
-  function validar(): FormErrors {
-    const erros: FormErrors = {}
-
-    if (form.nome.trim().length < 3) {
-      erros.nome = "Digite seu nome completo."
-    }
-
-    const regexEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-    if (!regexEmail.test(form.email.trim())) {
-      erros.email = "Digite um e-mail válido."
-    }
-
-    if (form.assunto.trim().length < 3) {
-      erros.assunto = "O assunto deve ter pelo menos 3 caracteres."
-    }
-
-    if (form.mensagem.trim().length < 10) {
-      erros.mensagem = "A mensagem deve ter pelo menos 10 caracteres."
-    }
-
-    return erros
-  }
-
-  function handleSubmit(e: FormEvent<HTMLFormElement>) {
-    e.preventDefault()
-
-    const erros = validar()
-    setErro(erros)
-
-    if (Object.keys(erros).length === 0) {
-      localStorage.setItem("nomeUsuario", form.nome.trim())
-      setNomeSalvo(form.nome.trim())
-
-      setSucesso(`✅ Mensagem enviada com sucesso! Obrigado, ${form.nome.trim()}!`)
-
-      setForm({
-        nome: "",
-        email: "",
-        assunto: "",
-        mensagem: ""
-      })
-
-      setTimeout(() => {
-        setSucesso("")
-      }, 4000)
-    }
+    setTimeout(() => {
+      setSucesso("")
+    }, 4000)
   }
 
   return (
@@ -116,25 +69,26 @@ export default function Contato() {
 
           {nomeSalvo && (
             <p className="text-green-700 text-center font-semibold mb-4">
-              👋 Bem-vindo de volta, {nomeSalvo}! Fique à vontade para enviar uma nova mensagem.
+              Bem-vindo de volta, {nomeSalvo}! Fique à vontade para enviar uma nova mensagem.
             </p>
           )}
 
-          <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+          <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
             <div>
               <label htmlFor="nome" className="block font-semibold text-gray-700 mb-1">
                 Nome Completo
               </label>
               <input
                 id="nome"
-                name="nome"
                 type="text"
                 placeholder="Seu nome"
-                value={form.nome}
-                onChange={handleChange}
+                {...register("nome", {
+                  validate: (value) =>
+                    value.trim().length >= 3 || "Digite seu nome completo."
+                })}
                 className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:border-orange-500 focus:ring-2 focus:ring-orange-200"
               />
-              {erro.nome && <span className="text-red-500 text-sm">{erro.nome}</span>}
+              {errors.nome && <span className="text-red-500 text-sm">{errors.nome.message}</span>}
             </div>
 
             <div>
@@ -143,14 +97,16 @@ export default function Contato() {
               </label>
               <input
                 id="email"
-                name="email"
                 type="email"
                 placeholder="Seu e-mail"
-                value={form.email}
-                onChange={handleChange}
+                {...register("email", {
+                  validate: (value) =>
+                    /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value.trim()) ||
+                    "Digite um e-mail válido."
+                })}
                 className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:border-orange-500 focus:ring-2 focus:ring-orange-200"
               />
-              {erro.email && <span className="text-red-500 text-sm">{erro.email}</span>}
+              {errors.email && <span className="text-red-500 text-sm">{errors.email.message}</span>}
             </div>
 
             <div>
@@ -159,14 +115,15 @@ export default function Contato() {
               </label>
               <input
                 id="assunto"
-                name="assunto"
                 type="text"
                 placeholder="Ex: Parceria, dúvida, sugestão..."
-                value={form.assunto}
-                onChange={handleChange}
+                {...register("assunto", {
+                  validate: (value) =>
+                    value.trim().length >= 3 || "O assunto deve ter pelo menos 3 caracteres."
+                })}
                 className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:border-orange-500 focus:ring-2 focus:ring-orange-200"
               />
-              {erro.assunto && <span className="text-red-500 text-sm">{erro.assunto}</span>}
+              {errors.assunto && <span className="text-red-500 text-sm">{errors.assunto.message}</span>}
             </div>
 
             <div>
@@ -175,14 +132,15 @@ export default function Contato() {
               </label>
               <textarea
                 id="mensagem"
-                name="mensagem"
                 rows={5}
                 placeholder="Escreva sua mensagem aqui..."
-                value={form.mensagem}
-                onChange={handleChange}
+                {...register("mensagem", {
+                  validate: (value) =>
+                    value.trim().length >= 10 || "A mensagem deve ter pelo menos 10 caracteres."
+                })}
                 className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:border-orange-500 focus:ring-2 focus:ring-orange-200"
               />
-              {erro.mensagem && <span className="text-red-500 text-sm">{erro.mensagem}</span>}
+              {errors.mensagem && <span className="text-red-500 text-sm">{errors.mensagem.message}</span>}
             </div>
 
             <button
