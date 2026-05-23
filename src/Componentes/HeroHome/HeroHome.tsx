@@ -17,42 +17,53 @@ export default function HeroHome() {
   }
 
   return (
-    <section className="relative h-[80vh] w-full overflow-hidden">
-
+    <section className="relative min-h-[85vh] w-full overflow-hidden md:min-h-screen">
       <img
         src={slides[slideIndex]}
         alt="Hero"
-        className="w-full h-full object-cover"
+        className="absolute inset-0 h-full w-full object-cover brightness-[55%]"
       />
 
-      <div className="absolute top-1/2 left-10 -translate-y-1/2 text-white max-w-xl">
-        <h1 className="text-5xl font-bold mb-4">
+      <div className="absolute left-6 top-1/2 max-w-xl -translate-y-1/2 text-white sm:left-10 md:left-[10%]">
+        <h1 className="mb-4 text-3xl font-bold leading-tight drop-shadow-lg sm:text-4xl md:text-5xl">
           Turma do Bem & CareSyncer
         </h1>
 
-        <p className="text-xl mb-6">
+        <p className="mb-6 text-base drop-shadow-md sm:text-lg md:text-xl">
           Tecnologia conectando pacientes e dentistas voluntários
         </p>
 
-        <button className="bg-green-500 px-6 py-3 rounded-lg font-semibold hover:bg-green-600 transition">
+        <a href="#sobre-projeto" className="inline-block rounded-full bg-[#FB8C00] px-8 py-3 font-semibold text-white shadow-lg transition hover:bg-[#E86E00]">
           Saiba mais
-        </button>
+        </a>
       </div>
 
       <button
         onClick={prevSlide}
-        className="absolute top-1/2 left-5 text-white text-3xl"
+        className="absolute left-4 top-1/2 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-black/35 text-3xl text-white transition hover:bg-black/55 md:left-6"
       >
-        ❮
+        ‹
       </button>
 
       <button
         onClick={nextSlide}
-        className="absolute top-1/2 right-5 text-white text-3xl"
+        className="absolute right-4 top-1/2 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-black/35 text-3xl text-white transition hover:bg-black/55 md:right-6"
       >
-        ❯
+        ›
       </button>
 
+      <div className="absolute bottom-8 left-1/2 flex -translate-x-1/2 gap-3">
+        {slides.map((_, index) => (
+          <button
+            key={index}
+            onClick={() => setSlideIndex(index)}
+            aria-label={`Ir para o slide ${index + 1}`}
+            className={`h-3 w-3 rounded-full transition ${
+              slideIndex === index ? "bg-[#FB8C00]" : "bg-white/60 hover:bg-white"
+            }`}
+          />
+        ))}
+      </div>
     </section>
   )
 }

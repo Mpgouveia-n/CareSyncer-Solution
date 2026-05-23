@@ -4,7 +4,7 @@ import useFadeIn from "../../hooks/EfeitosVisuais/useFadeIn"
 import Hero from "../../Componentes/Hero/Hero"
 
 // imagens
-import heroImg from "../../assets/Imagens/HeroPages/hero-contato.png"
+import heroImg from "../../assets/Imagens/ImagensHeros/parceira.jpg"
 import img1 from "../../assets/Imagens/IntegrantesCareSyncer/Manuel pedro. contato.jpg"
 import img2 from "../../assets/Imagens/IntegrantesCareSyncer/Lucas shida.contato.jpg"
 

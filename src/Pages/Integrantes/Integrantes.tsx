@@ -2,7 +2,7 @@ import useFadeIn from "../../hooks/EfeitosVisuais/useFadeIn"
 import Hero from "../../Componentes/Hero/Hero"
 import IntegrantesCard from "../../Componentes/IntegrantesCard/IntegrantesCard"
 
-import heroImg from "../../assets/Imagens/HeroPages/hero-integrantes.png"
+import heroImg from "../../assets/Imagens/ImagensHeros/hero funcionalidades .png"
 import img1 from "../../assets/Imagens/IntegrantesCareSyncer/Manuel pedro. contato.jpg"
 import img2 from "../../assets/Imagens/IntegrantesCareSyncer/Lucas shida.contato.jpg"
 

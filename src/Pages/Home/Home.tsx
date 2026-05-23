@@ -5,35 +5,34 @@ export default function Home() {
   useFadeIn()
 
   return (
-    <div className="w-full fade-in">
-      {/* HERO */}
+    <div className="w-full bg-[#d8f0db] fade-in">
       <HeroHome />
 
-      {/* SOBRE */}
-      <section className="py-12 px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 max-w-6xl mx-auto">
-        <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-5 md:mb-6 text-center">
-          Quem é a Turma do Bem?
-        </h2>
+      <section id="sobre-projeto" className="mx-auto max-w-6xl px-4 py-12 sm:px-6 md:px-8 lg:px-12 xl:px-16">
+        <div className="rounded-2xl bg-white p-6 shadow-[0_8px_24px_rgba(0,0,0,0.08)] md:p-10">
+          <h2 className="mb-5 text-center text-2xl font-bold text-[#FB8C00] sm:text-3xl md:mb-6 md:text-4xl">
+            Quem é a Turma do Bem?
+          </h2>
 
-        <p className="text-base sm:text-lg text-gray-700 mb-4 leading-7 md:leading-8">
-          A <strong>Turma do Bem</strong> é uma organização sem fins lucrativos que
-          conecta dentistas voluntários a pessoas em situação de vulnerabilidade social.
-        </p>
+          <p className="mb-4 text-base leading-7 text-gray-700 sm:text-lg md:leading-8">
+            A <strong>Turma do Bem</strong> é uma organização sem fins lucrativos que
+            conecta dentistas voluntários a pessoas em situação de vulnerabilidade social.
+          </p>
 
-        <p className="text-base sm:text-lg text-gray-700 leading-7 md:leading-8">
-          Com milhares de profissionais cadastrados, a rede promove acesso a
-          tratamentos odontológicos para quem mais precisa.
-        </p>
+          <p className="text-base leading-7 text-gray-700 sm:text-lg md:leading-8">
+            Com milhares de profissionais cadastrados, a rede promove acesso a
+            tratamentos odontológicos para quem mais precisa.
+          </p>
+        </div>
       </section>
 
-      {/* DESAFIO */}
-      <section className="bg-gray-100 py-12 px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16">
-        <div className="max-w-6xl mx-auto">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-5 md:mb-6 text-center">
+      <section id="funcionalidades" className="px-4 py-12 sm:px-6 md:px-8 lg:px-12 xl:px-16">
+        <div className="mx-auto max-w-6xl rounded-2xl bg-white p-6 shadow-[0_8px_24px_rgba(0,0,0,0.08)] md:p-10">
+          <h2 className="mb-5 text-center text-2xl font-bold text-[#2E7D32] sm:text-3xl md:mb-6 md:text-4xl">
             O Desafio
           </h2>
 
-          <p className="text-base sm:text-lg text-gray-700 text-center max-w-3xl mx-auto leading-7 md:leading-8">
+          <p className="mx-auto max-w-3xl text-center text-base leading-7 text-gray-700 sm:text-lg md:leading-8">
             Atualmente o processo de triagem e comunicação ainda depende de métodos
             manuais, o que pode gerar atrasos no atendimento e dificuldades no
             acompanhamento dos pacientes.
@@ -41,16 +40,17 @@ export default function Home() {
         </div>
       </section>
 
-      {/* SOLUÇÃO */}
-      <section className="py-12 px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 max-w-6xl mx-auto">
-        <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-5 md:mb-6 text-center">
-          A Solução: CareSyncer
-        </h2>
+      <section id="cadastro" className="mx-auto max-w-6xl px-4 py-12 sm:px-6 md:px-8 lg:px-12 xl:px-16">
+        <div className="rounded-2xl bg-white p-6 shadow-[0_8px_24px_rgba(0,0,0,0.08)] md:p-10">
+          <h2 className="mb-5 text-center text-2xl font-bold text-[#FB8C00] sm:text-3xl md:mb-6 md:text-4xl">
+            A Solução: CareSyncer
+          </h2>
 
-        <p className="text-base sm:text-lg text-gray-700 text-center max-w-3xl mx-auto leading-7 md:leading-8">
-          O <strong>CareSyncer</strong> digitaliza e organiza o fluxo de atendimento,
-          conectando pacientes e dentistas de forma mais rápida, transparente e eficiente.
-        </p>
+          <p className="mx-auto max-w-3xl text-center text-base leading-7 text-gray-700 sm:text-lg md:leading-8">
+            O <strong>CareSyncer</strong> digitaliza e organiza o fluxo de atendimento,
+            conectando pacientes e dentistas de forma mais rápida, transparente e eficiente.
+          </p>
+        </div>
       </section>
     </div>
   )
