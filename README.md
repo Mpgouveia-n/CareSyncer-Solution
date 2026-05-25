@@ -1,111 +1,163 @@
-# 🦷 CareSyncer – Sprint 3 (Front-end)
+# CareSyncer x Turma do Bem
 
-## 📌 Sobre o Projeto
+## Descrição
 
-O **CareSyncer** é uma solução tecnológica desenvolvida para otimizar a comunicação e o gerenciamento de atendimentos entre pacientes e dentistas voluntários da organização **Turma do Bem**.
+O **CareSyncer** é uma plataforma acadêmica desenvolvida para apoiar a ONG **Turma do Bem** no gerenciamento do fluxo de atendimento odontológico social.
 
-O objetivo principal é digitalizar processos que atualmente são realizados de forma manual, tornando o atendimento mais ágil, organizado e acessível.
+O projeto tem como objetivo digitalizar e organizar processos relacionados a pacientes, triagens, dentistas voluntários, procedimentos e atendimentos, facilitando a comunicação entre pessoas em situação de vulnerabilidade e profissionais voluntários.
 
----
+A solução busca tornar o acompanhamento odontológico mais claro, ágil e acessível, apoiando desde o cadastro inicial do paciente até a organização de procedimentos e atendimentos.
 
-## 🚀 Tecnologias Utilizadas
+## Tecnologias Utilizadas
 
-Durante a Sprint 3, o projeto passou por uma modernização completa no front-end, utilizando:
+### Front-end
 
-- ⚛️ React
-- ⚡ Vite
-- 🔷 TypeScript
-- 🎨 Tailwind CSS
-- 🔀 React Router DOM
+- React
+- Vite
+- TypeScript
+- Tailwind CSS
+- React Router DOM
+- React Hook Form
+- Fetch API
 
----
+### Back-end
 
-## 🧠 O que foi desenvolvido na Sprint 3
+- Java
+- Quarkus
+- Oracle Database
+- JDBC
 
-### 🔄 Migração de tecnologia
-- Conversão de HTML, CSS e JavaScript para **React + TypeScript**
-- Estruturação em **SPA (Single Page Application)**
+## Funcionalidades Implementadas
 
-### 🧱 Componentização
-- Criação de componentes reutilizáveis:
-  - Navbar
-  - Footer
-  - Hero (reutilizável)
-  - HeroHome (carrossel)
-  - Cards de integrantes
+- Home responsiva
+- Hero carousel na página inicial
+- Header e navegação responsivos
+- FAQ dinâmica com accordion
+- Página institucional Sobre
+- Página de integrantes
+- Formulário de contato com React Hook Form
+- Cadastro de pacientes com React Hook Form
+- Login visual para dentistas
+- Página de procedimentos odontológicos
+- Rota dinâmica de detalhes de procedimento
+- Integração com API Java/Quarkus
+- Consumo de endpoints REST com Fetch API
+- API Status discreto no footer
+- CRUD inicial de pacientes
+- Listagem de pacientes cadastrados
+- Exclusão de pacientes pela API
+- Services organizados por entidade
+- Types TypeScript para entidades do domínio
+- Responsividade mobile, tablet e desktop
+- Organização componentizada
 
-### 🌐 Sistema de Rotas
-- Implementação com **React Router**
-- Navegação entre páginas sem recarregamento
+## Estrutura do Projeto
 
-### 📄 Páginas desenvolvidas
-- 🏠 Home
-- 📘 Sobre
-- ❓ FAQ (com interação dinâmica)
-- 👨‍💻 Integrantes
-- 📞 Contato (com formulário funcional)
+```text
+src/
+├── Componentes/
+│   ├── ApiStatus/
+│   ├── Footer/
+│   ├── Hero/
+│   ├── HeroHome/
+│   ├── IntegrantesCard/
+│   └── NavUser/
+├── Pages/
+│   ├── CadastroPaciente/
+│   ├── Contato/
+│   ├── FAQ/
+│   ├── Home/
+│   ├── Integrantes/
+│   ├── LoginDentista/
+│   ├── ProcedimentoDetalhe/
+│   ├── Procedimentos/
+│   └── Sobre/
+├── assets/
+├── hooks/
+├── services/
+└── types/
+```
 
----
+## Como Executar o Projeto
 
-## ⚙️ Funcionalidades Implementadas
+### Front-end
 
-### 📩 Formulário de Contato
-- Validação de campos com `useState`
-- Feedback de erro e sucesso
-- Armazenamento de nome com `localStorage`
+```bash
+npm install
+npm run dev
+```
 
-### ❓ FAQ Interativo
-- Sistema de accordion com `useState`
+O front-end será executado em:
 
-### 🎨 Responsividade
-- Implementação completa utilizando **Tailwind CSS**
-- Layout adaptável para:
-  - Mobile 📱
-  - Tablet 💻
-  - Desktop 🖥️
+```text
+http://localhost:5173
+```
 
-### ✨ Animações
-- Uso de hook customizado (`useFadeIn`)
-- Transições suaves de entrada
+### Back-end
 
----
+No projeto Java/Quarkus:
 
-## 📈 Melhorias em relação à Sprint 2
+```bash
+.\mvnw.cmd quarkus:dev
+```
 
-- Código mais organizado e modular
-- Eliminação de repetição (DRY)
-- Melhor performance com Vite
-- Uso de tipagem com TypeScript
-- Layout mais moderno e responsivo
+A API será executada em:
 
----
+```text
+http://localhost:8080
+```
 
-## 🔮 Próximos Passos (Sprint 4)
+## Variáveis de Ambiente
 
-As seguintes funcionalidades foram planejadas e poderão ser implementadas nas próximas sprints:
+Crie um arquivo `.env` na raiz do front-end com:
 
-- 📝 Formulário de cadastro de pacientes
-- 🔐 Sistema de login para dentistas
-- 🔗 Integração com back-end (Java + banco de dados)
-- 📊 Dashboard administrativo
-- 📡 Consumo de API
+```env
+VITE_API_BASE_URL=http://localhost:8080
+```
 
----
+O arquivo `.env.example` já contém o modelo esperado.
 
-## 👨‍💻 Integrantes
+## Endpoints Integrados
 
-- **Manuel Pedro de Gouveia Neto**  
-  Desenvolvedor Full Stack (Front-end, Back-end e Banco de Dados)  
-  RM: 567458  
+- `GET /health`
+- `GET /pacientes`
+- `POST /pacientes`
+- `DELETE /pacientes/{id}`
+- `GET /procedimentos` com fallback visual para dados estáticos
 
-- **Lucas Shida Rodrigues da Costa**  
-  Engenharia de Documentação / ChatDeveloper  
-  RM: 568194  
+## Responsividade
 
----
+A interface foi ajustada com **Tailwind CSS** usando abordagem mobile-first e breakpoints responsivos.
 
-## 📂 Link do Repositirio Git Hub
+O projeto foi preparado para funcionar em:
 
+- Mobile: até 480px
+- Tablet: 768px
+- Desktop: 992px ou superior
+
+Foram aplicados ajustes em menus, cards, formulários, grids, heroes, botões e espaçamentos para evitar overflow horizontal e manter boa legibilidade.
+
+## Integração Front + Back
+
+O fluxo de integração implementado segue a arquitetura:
+
+```text
+React → Fetch API → API Quarkus → BO → DAO → Oracle
+```
+
+O front-end consome a API por meio da pasta `services/`, centralizando chamadas HTTP em `api.ts` e expondo services específicos por entidade.
+
+## Equipe
+
+- Manuel Pedro de Gouveia Neto
+- Lucas Shida Rodrigues da Costa
+
+## Status do Projeto
+
+Projeto acadêmico finalizado para a **Sprint 4**, com front-end responsivo, rotas dinâmicas, formulários com React Hook Form e integração inicial com a API Java/Quarkus.
+
+## Repositório
+
+```text
 https://github.com/Mpgouveia-n/CareSyncer-Solution.git
-
-
+```

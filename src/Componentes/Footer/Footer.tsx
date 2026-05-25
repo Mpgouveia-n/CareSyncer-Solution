@@ -1,3 +1,5 @@
+import ApiStatus from "../ApiStatus/ApiStatus"
+
 export default function Footer() {
   return (
     <footer className="bg-gray-900 px-4 py-8 text-white sm:px-6 md:py-10">
@@ -9,6 +11,8 @@ export default function Footer() {
         <p className="text-sm leading-6 text-gray-400 sm:text-base">
           Projeto acadêmico desenvolvido para a Turma do Bem
         </p>
+
+        <ApiStatus />
       </div>
     </footer>
   )

@@ -1,8 +1,10 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { useForm } from "react-hook-form"
 import type { SubmitHandler } from "react-hook-form"
 import Hero from "../../Componentes/Hero/Hero"
 import useFadeIn from "../../hooks/EfeitosVisuais/useFadeIn"
+import { cadastrarPaciente, deletarPaciente, listarPacientes } from "../../services/pacienteService"
+import type { Paciente, PacientePayload } from "../../types/Paciente"
 import heroImg from "../../assets/Imagens/ImagensHeros/parceira.jpg"
 
 type CadastroPacienteForm = {
@@ -15,10 +17,26 @@ type CadastroPacienteForm = {
   necessidade: string
 }
 
+function getPacienteId(paciente: Paciente) {
+  return paciente.id ?? paciente.idPaciente ?? paciente.id_paciente
+}
+
+function getPacienteNome(paciente: Paciente) {
+  return paciente.nome ?? paciente.nomeCompleto ?? "Paciente sem nome"
+}
+
+function gerarIdPaciente() {
+  return Math.floor(Date.now() / 1000)
+}
+
 export default function CadastroPaciente() {
   useFadeIn()
 
   const [sucesso, setSucesso] = useState("")
+  const [erroApi, setErroApi] = useState("")
+  const [pacientes, setPacientes] = useState<Paciente[]>([])
+  const [carregandoPacientes, setCarregandoPacientes] = useState(false)
+  const [enviando, setEnviando] = useState(false)
 
   const {
     register,
@@ -37,13 +55,72 @@ export default function CadastroPaciente() {
     }
   })
 
-  const onSubmit: SubmitHandler<CadastroPacienteForm> = (data) => {
-    setSucesso(`Cadastro de ${data.nome.trim()} preparado com sucesso.`)
-    reset()
+  async function carregarPacientes() {
+    setCarregandoPacientes(true)
+    setErroApi("")
 
-    setTimeout(() => {
-      setSucesso("")
-    }, 4000)
+    try {
+      const data = await listarPacientes()
+      setPacientes(Array.isArray(data) ? data : [])
+    } catch (error) {
+      setPacientes([])
+      setErroApi(error instanceof Error ? error.message : "Erro ao listar pacientes.")
+    } finally {
+      setCarregandoPacientes(false)
+    }
+  }
+
+  useEffect(() => {
+    carregarPacientes()
+  }, [])
+
+  const onSubmit: SubmitHandler<CadastroPacienteForm> = async (data) => {
+    setEnviando(true)
+    setErroApi("")
+    setSucesso("")
+
+    const paciente: PacientePayload = {
+      id_paciente: gerarIdPaciente(),
+      nome: data.nome.trim(),
+      cpf: data.cpf.trim(),
+      data_nascimento: `${data.nascimento}T00:00:00.000-03:00`,
+      telefone: data.telefone.trim(),
+      email: data.email.trim()
+    }
+
+    try {
+      console.log("Payload POST /pacientes:", paciente)
+      await cadastrarPaciente(paciente)
+      setSucesso(`Cadastro de ${data.nome.trim()} enviado para a API com sucesso.`)
+      reset()
+      await carregarPacientes()
+
+      setTimeout(() => {
+        setSucesso("")
+      }, 4000)
+    } catch (error) {
+      setErroApi(error instanceof Error ? error.message : "Erro ao cadastrar paciente.")
+    } finally {
+      setEnviando(false)
+    }
+  }
+
+  async function handleExcluirPaciente(paciente: Paciente) {
+    const id = getPacienteId(paciente)
+
+    if (!id) {
+      setErroApi("A API não retornou um identificador para este paciente.")
+      return
+    }
+
+    setErroApi("")
+
+    try {
+      await deletarPaciente(id)
+      await carregarPacientes()
+    } catch (error) {
+      setErroApi(error instanceof Error ? error.message : "Erro ao excluir paciente.")
+    }
   }
 
   return (
@@ -178,9 +255,10 @@ export default function CadastroPaciente() {
             <div className="md:col-span-2">
               <button
                 type="submit"
-                className="w-full rounded-full bg-[#FB8C00] px-8 py-3 font-semibold text-white transition hover:bg-[#E86E00] sm:w-fit"
+                disabled={enviando}
+                className="w-full rounded-full bg-[#FB8C00] px-8 py-3 font-semibold text-white transition hover:bg-[#E86E00] disabled:cursor-not-allowed disabled:opacity-70 sm:w-fit"
               >
-                Cadastrar paciente
+                {enviando ? "Enviando..." : "Cadastrar paciente"}
               </button>
             </div>
 
@@ -189,7 +267,59 @@ export default function CadastroPaciente() {
                 {sucesso}
               </div>
             )}
+
+            {erroApi && (
+              <div className="rounded-lg bg-red-100 p-3 text-center font-semibold text-red-700 md:col-span-2">
+                {erroApi}
+              </div>
+            )}
           </form>
+        </div>
+
+        <div className="mt-8 rounded-xl bg-white p-5 shadow-[0_8px_24px_rgba(0,0,0,0.08)] sm:p-6 md:rounded-2xl md:p-8">
+          <h2 className="mb-4 text-2xl font-bold text-[#2E7D32]">
+            Pacientes cadastrados
+          </h2>
+
+          {carregandoPacientes && (
+            <p className="text-gray-700">Carregando pacientes...</p>
+          )}
+
+          {!carregandoPacientes && pacientes.length === 0 && (
+            <p className="text-gray-700">Nenhum paciente cadastrado ainda.</p>
+          )}
+
+          {!carregandoPacientes && pacientes.length > 0 && (
+            <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+              {pacientes.map((paciente, index) => {
+                const id = getPacienteId(paciente)
+
+                return (
+                  <article key={id ?? index} className="rounded-xl border border-gray-300 p-4">
+                    <h3 className="font-bold text-gray-900">
+                      {getPacienteNome(paciente)}
+                    </h3>
+                    <p className="mt-1 text-sm text-gray-600">
+                      {paciente.email ?? "E-mail não informado"}
+                    </p>
+                    <p className="mt-1 text-sm text-gray-600">
+                      {paciente.telefone ?? "Telefone não informado"}
+                    </p>
+
+                    {id && (
+                      <button
+                        type="button"
+                        onClick={() => handleExcluirPaciente(paciente)}
+                        className="mt-4 rounded-full bg-red-500 px-4 py-2 text-sm font-semibold text-white transition hover:bg-red-600"
+                      >
+                        Excluir
+                      </button>
+                    )}
+                  </article>
+                )
+              })}
+            </div>
+          )}
         </div>
       </section>
     </div>

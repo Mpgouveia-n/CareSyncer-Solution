@@ -1,16 +1,19 @@
+import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
 import Hero from "../../Componentes/Hero/Hero"
 import useFadeIn from "../../hooks/EfeitosVisuais/useFadeIn"
+import { listarProcedimentos } from "../../services/procedimentoService"
+import type { Procedimento } from "../../types/Procedimento"
 import heroImg from "../../assets/Imagens/ImagensHeros/hero funcionalidades .png"
 
-type Procedimento = {
+type ProcedimentoCard = {
   id: string
   nome: string
   resumo: string
   destaque: string
 }
 
-const procedimentos: Procedimento[] = [
+const procedimentosEstaticos: ProcedimentoCard[] = [
   {
     id: "limpeza",
     nome: "Limpeza",
@@ -37,9 +40,62 @@ const procedimentos: Procedimento[] = [
   }
 ]
 
+function criarSlug(valor: string) {
+  return valor
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/(^-|-$)/g, "")
+}
+
+function normalizarProcedimento(procedimento: Procedimento): ProcedimentoCard {
+  const nome = procedimento.nome ?? "Procedimento odontológico"
+
+  return {
+    id: criarSlug(nome),
+    nome,
+    resumo: procedimento.resumo ?? procedimento.descricao ?? "Procedimento cadastrado na API CareSyncer.",
+    destaque: procedimento.destaque ?? procedimento.categoria ?? "API"
+  }
+}
+
 export default function Procedimentos() {
   const navigate = useNavigate()
   useFadeIn()
+
+  const [procedimentos, setProcedimentos] = useState<ProcedimentoCard[]>(procedimentosEstaticos)
+  const [carregando, setCarregando] = useState(false)
+  const [erroApi, setErroApi] = useState("")
+  const [usandoApi, setUsandoApi] = useState(false)
+
+  useEffect(() => {
+    async function carregarProcedimentos() {
+      setCarregando(true)
+      setErroApi("")
+
+      try {
+        const data = await listarProcedimentos()
+
+        if (Array.isArray(data) && data.length > 0) {
+          setProcedimentos(data.map(normalizarProcedimento))
+          setUsandoApi(true)
+          return
+        }
+
+        setProcedimentos(procedimentosEstaticos)
+        setUsandoApi(false)
+      } catch (error) {
+        setProcedimentos(procedimentosEstaticos)
+        setUsandoApi(false)
+        setErroApi(error instanceof Error ? error.message : "Erro ao buscar procedimentos.")
+      } finally {
+        setCarregando(false)
+      }
+    }
+
+    carregarProcedimentos()
+  }, [])
 
   return (
     <div className="fade-in bg-[#d8f0db]">
@@ -50,6 +106,13 @@ export default function Procedimentos() {
       />
 
       <section className="mx-auto max-w-6xl px-4 py-10 sm:px-6 sm:py-12 md:px-8 md:py-14 lg:px-12">
+        <div className="mb-6 rounded-xl bg-white p-4 text-sm text-gray-700 shadow-[0_8px_24px_rgba(0,0,0,0.08)]">
+          {carregando && "Carregando procedimentos da API..."}
+          {!carregando && usandoApi && "Procedimentos carregados da API."}
+          {!carregando && !usandoApi && "Exibindo procedimentos padrão do front-end."}
+          {erroApi && <p className="mt-2 text-red-600">{erroApi}</p>}
+        </div>
+
         <div className="grid grid-cols-1 gap-5 md:grid-cols-2 md:gap-6">
           {procedimentos.map((procedimento) => (
             <article
